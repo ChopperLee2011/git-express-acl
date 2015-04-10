@@ -1,0 +1,12 @@
+module.exports = {
+    github: {
+        "USERNAME": "",
+        "PASSWORD": "",
+        TOKEN:''
+    },
+    gitlab: {
+        "USERNAME": "",
+        "PASSWORD": "",
+        TOKEN:''
+    }
+};
