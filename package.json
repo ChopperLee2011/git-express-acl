@@ -1,23 +1,30 @@
 {
-  "name": "express-acl",
-  "description": "Express ACL",
-  "version": "0.0.1",
+  "name": "git-express-acl",
+  "description": "ACL module for SweepBoard",
+  "version": "0.0.2",
   "repository": {
     "type": "git"
   },
   "engines": {
     "node": "0.10.x"
   },
-  "main": "server/server.js",
+  "main": "index.js",
   "dependencies": {
     "acl": "0.4.7",
     "express": "3.4.8",
     "redis": "^0.12.1"
   },
   "devDependencies": {
+    "chai": "^2.2.0",
+    "chai-as-promised": "^4.3.0",
+    "chai-http": "^1.0.0",
+    "install": "^0.1.8",
+    "npm": "^2.7.6",
+    "should": "^5.2.0",
+    "supertest": "^0.15.0"
   },
   "scripts": {
     "start": "node server/server.js",
-    "test": "mocha --compilers js:babel/register"
+    "test": "mocha --compilers js:babel/register -t 10000"
   }
 }

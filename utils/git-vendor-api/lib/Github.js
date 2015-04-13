@@ -45,11 +45,13 @@ Github.prototype.getFinalPermissionNum = function (owner, repos, user) {
     let promises = [];
     repos.forEach((repoName) => {
         let PermissionNum = 0;
-
         let q = this.getRepoDetail(owner, repoName).then((repo) => {
             if (!JSON.parse(repo).private) PermissionNum = PermissionNum | 5;
+            //console.log('owner ' + owner + ' repoName ' + repoName);
             return this.getRepoAssignees(owner, repoName);
         }).then(function (assign) {
+            //console.info('assign', assign);
+
             //TODO: assign can be a list
             if (JSON.parse(assign)[0].id === user.github_id)
                 PermissionNum | 2;
@@ -61,7 +63,6 @@ Github.prototype.getFinalPermissionNum = function (owner, repos, user) {
     //TODO: promise seems already run before all
     return Promise.all(promises).then(function (PermissionNums) {
         //console.info('PermissionNums', PermissionNums);
-
         PermissionNums.forEach(PermissionNum => {
                 FinalPermissionNum = FinalPermissionNum & PermissionNum;
             }
