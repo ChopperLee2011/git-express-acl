@@ -40,32 +40,36 @@ Github.prototype.getRepoDetail = function (owner, repo) {
 };
 //// highlevel API for get Final Permission Number for all repos
 Github.prototype.getFinalPermissionNum = function (owner, repos, user) {
-    let FinalPermissionNum = 111;
+    //let self = this;
+    let FinalPermissionNum = 7; ///111
     let promises = [];
     repos.forEach((repoName) => {
         let PermissionNum = 0;
+
         let q = this.getRepoDetail(owner, repoName).then((repo) => {
             if (!JSON.parse(repo).private) PermissionNum = PermissionNum | 5;
             return this.getRepoAssignees(owner, repoName);
         }).then(function (assign) {
             //TODO: assign can be a list
-            if (JSON.parse(assign)[0].id === user.github_id) return PermissionNum | 2 // 10;
-            console.info('PermissionNum', PermissionNum);
-
+            if (JSON.parse(assign)[0].id === user.github_id)
+                PermissionNum | 2;
+            //console.info('PermissionNum', PermissionNum);
             return PermissionNum;
-        });
+        }).catch((err) => console.info('err', err));
         promises.push(q);
     });
     //TODO: promise seems already run before all
-    Promise.all(promises).then(function (PermissionNums) {
-        console.info('PermissionNums', PermissionNums);
+    return Promise.all(promises).then(function (PermissionNums) {
+        //console.info('PermissionNums', PermissionNums);
+
         PermissionNums.forEach(PermissionNum => {
                 FinalPermissionNum = FinalPermissionNum & PermissionNum;
             }
         );
-        console.info('FinalPermissionNum', FinalPermissionNum);
+        //console.info('FinalPermissionNum', FinalPermissionNum);
         return FinalPermissionNum;
     });
+
 };
 
 Github.prototype.getOrgRepo = function (orgName) {

@@ -50,20 +50,20 @@ var acl = new Acl(this.backend, null, {
 //    }
 //});
 // Role --- User
-acl.addUserRoles(userId, userRole);
-//acl.addUserRoles(userId, 'test');
-acl.addRoleParents(userRole, normalRole);
-// Resource  --- Role
-acl.allow(normalRole, resource, ['get']);
-acl.allow(userRole, resource, ['put']);
-
-// check allow
-acl.isAllowed(userId, resource, ['get', 'put'], function (err, allowed) {
-    console.info('userId', userId);
-    console.info('resource', resource);
-
-    console.log('allowed: ' + allowed);
-});
+//acl.addUserRoles(userId, userRole);
+////acl.addUserRoles(userId, 'test');
+//acl.addRoleParents(userRole, normalRole);
+//// Resource  --- Role
+//acl.allow(normalRole, resource, ['get']);
+//acl.allow(userRole, resource, ['put']);
+//
+//// check allow
+//acl.isAllowed(userId, resource, ['get', 'put'], function (err, allowed) {
+//    console.info('userId', userId);
+//    console.info('resource', resource);
+//
+//    console.log('allowed: ' + allowed);
+//});
 
 /*
  * ------------------------------------------------
@@ -137,7 +137,7 @@ var route = function (req, res) {
     //var username = req.session.user ? req.session.user.username : "";
     //var roles = req.session.user ? req.session.user.roles : "";
     //
-    req.session.userId = 'u123';
+    req.session.userId = '2529258';
     //req.session.user = selectedUser;
     res.json({
         route: req.route.path,

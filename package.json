@@ -17,6 +17,7 @@
   "devDependencies": {
   },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "test": "mocha --compilers js:babel/register"
   }
 }
